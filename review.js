@@ -1,5 +1,5 @@
 var movies = null;
-if($('.js--film-ratings').length > 0) {
+if($('.js--film-ratings').length > 0) {
     movies =  $('.js--film-ratings').children();
 } else {
     movies = $('.film-grid').children();
@@ -15,7 +15,7 @@ var $this = $(this),
     if($this.find('.star-rating__lit--gold').length > 0) {
         rating = 5 * parseInt($this.find('.star-rating__lit--gold').attr('style').replace('width:', '').replace('%', '')) / 100;
         ratingDate = new Date($this.find('.rating-media__timestamp').text());
-        ratingDate = ratingDate.toISOString().substr(0, 19);
+        ratingDate = ratingDate.getFullYear() + '-' + ('0' + (ratingDate.getMonth() + 1)).slice(-2) + '-' + ('0' + ratingDate.getDate()).slice(-2);
         return [rank, title, year, dir, rating, ratingDate].join('\t');
     } 
     return [rank, title, year, dir].join('\t');
