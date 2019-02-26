@@ -15,7 +15,7 @@ var $this = $(this),
     if($this.find('.star-rating__lit--gold').length > 0) {
         rating = 5 * parseInt($this.find('.star-rating__lit--gold').attr('style').replace('width:', '').replace('%', '')) / 100;
         ratingDate = new Date($this.find('.rating-media__timestamp').text());
-        ratingDate = (ratingDate.getYear() + 1900) + '-' + (ratingDate.getMonth() + 1) + '-' + ratingDate.getDate();
+        ratingDate = ratingDate.toISOString().substr(0, 19);
         return [rank, title, year, dir, rating, ratingDate].join('\t');
     } 
     return [rank, title, year, dir].join('\t');
