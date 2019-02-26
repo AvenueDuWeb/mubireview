@@ -12,5 +12,11 @@ var $this = $(this),
     re = dirYear.match(/^(.+), (\d+)$/),
     dir = re ? re[1] : dirYear,
     year = re ? re[2] : '';
-return [rank, title, year, dir].join('\t');
+    if($this.find('.star-rating__lit--gold').length > 0) {
+        rating = 5 * parseInt($this.find('.star-rating__lit--gold').attr('style').replace('width:', '').replace('%', '')) / 100;
+        ratingDate = new Date($this.find('.rating-media__timestamp').text());
+        ratingDate = (ratingDate.getYear() + 1900) + '-' + (ratingDate.getMonth() + 1) + '-' + ratingDate.getDate();
+        return [rank, title, year, dir, rating, ratingDate].join('\t');
+    } 
+    return [rank, title, year, dir].join('\t');
 }).get().join('\n');
